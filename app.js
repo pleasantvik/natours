@@ -94,11 +94,13 @@ const deleteTour = (req, res) => {
   });
 };
 // ROUTES
-app.get(TOURS_URL, getAllTours);
-app.get(`${TOURS_URL}/:id`, getTour);
-app.post(TOURS_URL, createTour);
-app.patch(`${TOURS_URL}/:id`, updateTour);
-app.delete(`${TOURS_URL}/:id`, deleteTour);
+// app.get(TOURS_URL, getAllTours);
+// app.get(`${TOURS_URL}/:id`, getTour);
+// app.post(TOURS_URL, createTour);
+// app.patch(`${TOURS_URL}/:id`, updateTour);
+// app.delete(`${TOURS_URL}/:id`, deleteTour);
 
+app.route(TOURS_URL).get(getAllTours).post(createTour);
+app.route(`${TOURS_URL}/:id`).get(getTour).delete(deleteTour).patch(updateTour);
 const PORT = 5000;
 app.listen(PORT, () => console.log(`Listening at Port ${PORT}`));

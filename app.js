@@ -12,6 +12,7 @@ const app = express();
 //* Middleware for modifying incoming request data.
 app.use(morgan('dev'));
 app.use(express.json());
+app.use(express.static(`${__dirname}/public`));
 
 app.use((req, res, next) => {
   console.log(`Hello from middleware`);

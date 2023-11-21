@@ -7,10 +7,9 @@ const toursPath = path.join(__dirname, '../dev-data/data/tours-simple.json');
 const tours = JSON.parse(fs.readFileSync(toursPath, 'utf-8'));
 
 const getAllTours = (req, res) => {
-  console.log(req.requestTime);
   res.status(200).json({
     status: 'success',
-    results: tours?.length,
+    results: tours.length,
     requestedAt: req.requestTime,
     data: {
       tours,
@@ -20,8 +19,8 @@ const getAllTours = (req, res) => {
 
 const getTour = (req, res) => {
   //   console.log(req.params);
-  const { id } = req?.params;
-  const tour = tours.find((tour) => tour.id === +id);
+  const { id } = req.params;
+  const tour = tours.find((tor) => tor.id === +id);
 
   res.status(200).json({
     status: 'success',
@@ -31,7 +30,6 @@ const getTour = (req, res) => {
   });
 };
 const createTour = (req, res) => {
-  console.log(req.body);
   const newId = tours[tours.length - 1].id + 1;
 
   const newTour = { ...req.body, id: newId };
@@ -48,9 +46,9 @@ const createTour = (req, res) => {
 };
 
 const updateTour = (req, res) => {
-  //   console.log(req.params);
-  const { id } = req?.params;
-  const tour = tours.find((tour) => tour.id === +id);
+  // console.log(req.params);
+  // const { id } = req.params;
+  // const tour = tours.find((tour) => tour.id === +id);
 
   res.status(200).json({
     status: 'success',
@@ -62,8 +60,6 @@ const updateTour = (req, res) => {
 
 const deleteTour = (req, res) => {
   //   console.log(req.params);
-  const { id } = req?.params;
-  const tour = tours.find((tour) => tour.id === +id);
 
   res.status(204).json({
     status: 'success',
@@ -72,7 +68,7 @@ const deleteTour = (req, res) => {
 };
 
 const checkID = (req, res, next, val) => {
-  console.log(`Tour id is ${val}`);
+  // console.log(`Tour id is ${val}`);
 
   if (+val > tours.length) {
     return res.status(404).json({

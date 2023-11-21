@@ -8,14 +8,15 @@ const TOURS_URL = '/api/v1/tours';
 const USERS_URL = '/api/v1/users';
 
 const app = express();
-
 //* Middleware for modifying incoming request data.
-app.use(morgan('dev'));
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
 app.use(express.json());
 app.use(express.static(`${__dirname}/public`));
 
 app.use((req, res, next) => {
-  console.log(`Hello from middleware`);
+  // console.log(`Hello from middleware`);
   next();
 });
 

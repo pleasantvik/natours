@@ -59,6 +59,12 @@ const tourSchema = new mongoose.Schema(
     timestamps: true,
   },
 );
+
+tourSchema.statics.tourNameExistInDB = async function (name) {
+  const tour = await this.findOne({ name });
+
+  return !!tour;
+};
 const Tour = mongoose.model('Tour', tourSchema);
 // Tour.createIndexes = { unique: true, name: 1 };
 
